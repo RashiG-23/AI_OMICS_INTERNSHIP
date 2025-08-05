@@ -1,0 +1,38 @@
+#to check newly set current directory
+getwd()
+
+#to create subfolders
+dir.create("raw_data")
+dir.create("clean_data")
+dir.create("scripts")
+dir.create("results")
+dir.create("plots")
+
+#to load csv file
+data <- read.csv(file.choose())
+View(data)
+
+#to study the structure of the data
+str(data)
+plot(data)
+
+#to convert gender column from character to factor type
+data$gender_fac <- as.factor(data$gender)
+str(data)
+
+#mistakenly changed diagnosis column in factor and numeric types
+#used df function to remove those columns from file
+df <- df[,-9]
+df <- data[,-9]
+data <- df[,-8]
+
+#to convert smoker column into binary factor
+data$smoker_fac <- as.factor(data$smoker)
+class(data$smoker_fac)
+data$smoker_num <- ifelse(data$smoker_fac == "Yes", 1, 0)
+class(data$smoker_num)
+data$smoker_num
+
+#to save clean data set 
+write.csv(data, file = "clean_data/patient_info_clean.csv")
+
