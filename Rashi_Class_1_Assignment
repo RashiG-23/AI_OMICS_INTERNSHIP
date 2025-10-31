@@ -36,3 +36,4 @@ data$smoker_num
 #to save clean data set 
 write.csv(data, file = "clean_data/patient_info_clean.csv")
 
+
